@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    start_nginx.sh                                     :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ctw02485 <ctw02485@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/07 00:26:43 by gleal             #+#    #+#              #
-#    Updated: 2023/04/22 18:57:39 by ctw02485         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 cp /tmp/server.conf /etc/nginx/sites-available/server.conf
 ln -s /etc/nginx/sites-available/server.conf /etc/nginx/sites-enabled/server.conf
 
