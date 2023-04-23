@@ -1,7 +1,12 @@
-cp /tmp/server.conf /etc/nginx/sites-available/server.conf
-ln -s /etc/nginx/sites-available/server.conf /etc/nginx/sites-enabled/server.conf
+#! /bin/bash
 
-mkdir /etc/nginx/ssl
+cp /tmp/server.conf /etc/nginx/sites-available/server.conf
+ln -sf /etc/nginx/sites-available/server.conf /etc/nginx/sites-enabled/server.conf
+
+if [ ! -d "/etc/nginx/ssl" ]
+then
+	mkdir /etc/nginx/ssl
+fi
 openssl req -newkey rsa:4096 \
 			-x509 \
 			-sha256 \

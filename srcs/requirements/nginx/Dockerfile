@@ -16,6 +16,8 @@ RUN rm -f var/www/html/index.html
 EXPOSE 443
 
 COPY homepage /var/www/html/homepage
-COPY start_nginx.sh .
+COPY tools/start_nginx.sh /usr/local/bin
+
+RUN chmod +x /usr/local/bin/start_nginx.sh
 
 ENTRYPOINT [ "start_nginx.sh" ]

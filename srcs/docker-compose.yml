@@ -4,6 +4,7 @@ services:
 
   mariadb:
     build: requirements/mariadb
+    container_name: mariadb
     env_file:
       - .env
     restart: always
@@ -12,20 +13,26 @@ services:
     expose:
       - 3306
 
-  nginx:
-    build: requirements/nginx
+  wordpress:
+    depends_on:
+      - mariadb
+    build: requirements/wordpress
+    container_name: wordpress
     env_file:
       - .env
-    ports:
-      - 443:443
     restart: always
     networks:
       - inception
 
-  wordpress:
-    build: requirements/wordpress
+  nginx:
+    depends_on:
+      - wordpress
+    build: requirements/nginx
+    container_name: nginx
     env_file:
       - .env
+    ports:
+      - 443:443
     restart: always
     networks:
       - inception
