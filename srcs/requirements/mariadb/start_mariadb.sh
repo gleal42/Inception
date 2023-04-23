@@ -1,32 +1,17 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    start.sh                                           :+:      :+:    :+:    #
+#    start_mariadb.sh                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gleal <gleal@student.42lisboa.com>         +#+  +:+       +#+         #
+#    By: ctw02485 <ctw02485@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 00:26:43 by gleal             #+#    #+#              #
-#    Updated: 2021/04/11 00:03:42 by gleal            ###   ########.fr        #
+#    Updated: 2023/04/22 19:44:32 by ctw02485         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-chown -R www-data /var/www/*
-chmod -R 755 /var/www/*
-
-cp /tmp/server_index_on.conf /etc/nginx/sites-available/server.conf
-ln -s /etc/nginx/sites-available/server.conf /etc/nginx/sites-enabled/server.conf
-
-mkdir /etc/nginx/ssl
-openssl req -newkey rsa:4096 \
-			-x509 \
-			-sha256 \
-			-days 3650 \
-			-nodes \
-			-out /etc/nginx/ssl/localhost.crt \
-			-keyout /etc/nginx/ssl/localhost.key \
-			-subj "/C=PT/ST=Lisbon/L=Lisbon/O=42 Lisboa/OU=gleal/CN=www.localhost.com"
-
 service mysql start
+
 mysql -u root --skip-password << HERE
 CREATE DATABASE database_wp;
 GRANT ALL PRIVILEGES ON database_wp.* TO 'root'@'localhost';
@@ -40,12 +25,5 @@ INSERT INTO  database_wp.todo_list (content) VALUES ("My third important item");
 INSERT INTO  database_wp.todo_list (content) VALUES ("My fourth important item");
 SELECT * FROM database_wp.todo_list;
 HERE
+
 service mysql status
-service php7.3-fpm start
-service php7.3-fpm status
-
-service nginx start
-nginx -t
-service nginx status
-
-bash
