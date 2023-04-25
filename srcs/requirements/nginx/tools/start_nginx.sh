@@ -1,7 +1,6 @@
 #! /bin/bash
 
-cp /tmp/server.conf /etc/nginx/sites-available/server.conf
-ln -sf /etc/nginx/sites-available/server.conf /etc/nginx/sites-enabled/server.conf
+set -eux
 
 if [ ! -d "/etc/nginx/ssl" ]
 then

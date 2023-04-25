@@ -70,3 +70,14 @@ https://wpengine.com/resources/nginx-vs-apache-wordpress/
 https://ubuntu.com/tutorials/install-and-configure-wordpress#4-configure-apache-for-wordpress
 
 https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+
+
+# Debugging
+
+Main way to debug was:
+
+add set -eux to all te scripts to make errors verbose
+
+docker exec -it container ID bash
+cat /var/log/nginx/error.log
+click on page

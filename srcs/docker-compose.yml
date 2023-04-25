@@ -12,6 +12,8 @@ services:
       - inception
     expose:
       - 3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
 
   wordpress:
     depends_on:
@@ -20,6 +22,8 @@ services:
     container_name: wordpress
     env_file:
       - .env
+    volumes:
+      - wordpress_data:/var/www/html
     restart: always
     networks:
       - inception
@@ -33,9 +37,27 @@ services:
       - .env
     ports:
       - 443:443
+    volumes:
+      - ./requirements/nginx/conf/:/etc/nginx/conf.d/
+      - wordpress_data:/var/www/html
     restart: always
     networks:
       - inception
 
 networks:
   inception:
+    driver: bridge
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ctw02485/42/Inception/data/wordpress
+      o: bind
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ctw02485/42/Inception/data/mysql
+      o: bind
