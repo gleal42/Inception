@@ -34,6 +34,6 @@ COPY tools/start_wordpress.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/start_wordpress.sh
 RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 0777 /var/www/html/wp-content/
+RUN chmod -R 0777 /var/www/html/
 
 ENTRYPOINT [ "start_wordpress.sh" ]

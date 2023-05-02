@@ -23,18 +23,24 @@ Y
 HERE
 
 mysql -uroot -p${MYSQL_ROOT_PASSWORD} << HERE
-CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE} /*\!40100 DEFAULT CHARACTER SET utf8 */;
-GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_ROOT_USER}'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+CREATE DATABASE ${MYSQL_DATABASE} CHARACTER SET utf8;
+CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY 'secret';
 FLUSH PRIVILEGES;
 HERE
 
+# GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_ROOT_USER}'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
+
 # service mysql status
-mysqladmin -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} status;
-service mysql stop
+# mysqladmin -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} shutdown;
+# service mysql stop
+
+
+#TODO: SQL script to prevent wordpress instalation
+mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /tmp/wordpress.sql
 
 fi
 
-mysqld --help --verbose | grep bootstrap
+# mysqld --help --verbose | grep bootstrap
 
 mysqld

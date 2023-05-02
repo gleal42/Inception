@@ -153,3 +153,10 @@ Thanks for using MariaDB!
 
 https://stackoverflow.com/a/11990813
 
+
+USE information_schema
+SHOW FULL TABLES;
+select * from USER_PRIVILEGES;
+
+TODO: create wordpress.sql using this:
+mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} MYSQL_DATABASE > /conf/wordpress.sql
