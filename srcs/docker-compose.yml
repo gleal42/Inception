@@ -13,6 +13,7 @@ services:
     expose:
       - 3306
     volumes:
+      - ./requirements/mariadb/conf/:/etc/mysql/mariadb.conf.d/
       - mariadb_data:/var/lib/mysql
 
   wordpress:
