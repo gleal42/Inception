@@ -30,4 +30,4 @@ fi
 # mysqld --help --verbose | grep bootstrap
 service mysql stop
 
-mysqld --user=gleal
+mysqld
