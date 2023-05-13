@@ -29,6 +29,8 @@ GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY
 FLUSH PRIVILEGES;
 HERE
 
+mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < /tmp/instalation.sql
+
 # GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_ROOT_USER}'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
 
 # service mysql status
@@ -37,7 +39,8 @@ HERE
 
 
 #TODO: SQL script to prevent wordpress instalation
-mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /tmp/wordpress.sql
+# mysql -uroot -p$MYSQL_ROOT_PASSWORD < /tmp/wordpress.sql
+
 
 fi
 

@@ -90,7 +90,8 @@ docker cp <mariadb-container>:/etc/mysql/mariadb.conf.d/50-server.cnf srcs/requi
 
 Only replaced bind-address by 0.0.0.0
 
-mysql_secure_installation
+`mysql_secure_installation`
+```
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
@@ -150,6 +151,7 @@ All done!  If you've completed all of the above steps, your MariaDB
 installation should now be secure.
 
 Thanks for using MariaDB!
+```
 
 https://stackoverflow.com/a/11990813
 
@@ -158,5 +160,18 @@ USE information_schema
 SHOW FULL TABLES;
 select * from USER_PRIVILEGES;
 
-TODO: create wordpress.sql using this:
-mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} MYSQL_DATABASE > /conf/wordpress.sql
+To setup instalation:
+Do it the first time.
+Then manually delete every post and plugin.
+Then run:
+mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} --all-databases > /tmp/instalation.sql
+
+Finaly delete all the posts from wp_options
+
+https://codex.wordpress.org/Database_Description#Table:_wp_options
+
+https://code.tutsplus.com/tutorials/understanding-and-working-with-the-wordpress-options-table--cms-21119
+
+https://codex.wordpress.org/Option_Reference
+
+https://wordpress.org/documentation/article/roles-and-capabilities/

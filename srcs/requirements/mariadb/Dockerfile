@@ -8,7 +8,7 @@ EXPOSE 3306
 
 COPY tools/start_mariadb.sh /usr/local/bin/
 COPY conf/my.cnf /etc/mysql/conf.d/my.cnf
-COPY conf/wordpress.sql /tmp/wordpress.sql
+COPY conf/instalation.sql /tmp/instalation.sql
 
 RUN chmod +x /usr/local/bin/start_mariadb.sh
 
