@@ -22,28 +22,12 @@ Y
 Y
 HERE
 
-mysql -uroot -p${MYSQL_ROOT_PASSWORD} << HERE
-CREATE DATABASE ${MYSQL_DATABASE} CHARACTER SET utf8;
-CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY 'secret';
-GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY 'secret';
-FLUSH PRIVILEGES;
-HERE
-
 mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < /tmp/instalation.sql
-
-# GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_ROOT_USER}'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
-
-# service mysql status
-# mysqladmin -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} shutdown;
-# service mysql stop
-
-
-#TODO: SQL script to prevent wordpress instalation
-# mysql -uroot -p$MYSQL_ROOT_PASSWORD < /tmp/wordpress.sql
-
 
 fi
 
+# service mysql status
 # mysqld --help --verbose | grep bootstrap
+service mysql stop
 
-mysqld
+mysqld --user=gleal

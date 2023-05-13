@@ -1,3 +1,8 @@
+CREATE DATABASE wordpress CHARACTER SET utf8;
+CREATE USER 'gleal'@'%' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'gleal'@'%' IDENTIFIED BY 'secret';
+FLUSH PRIVILEGES;
+
 USE `wordpress`;
 
 DROP TABLE IF EXISTS `wp_commentmeta`;
