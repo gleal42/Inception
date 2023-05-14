@@ -3,12 +3,13 @@ FROM debian:buster
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get -y install mariadb-server
+RUN apt-get -y install gettext-base
 
 EXPOSE 3306
 
 COPY tools/start_mariadb.sh /usr/local/bin/
 COPY conf/my.cnf /etc/mysql/conf.d/my.cnf
-COPY conf/instalation.sql /tmp/instalation.sql
+COPY conf/instalation.sql /tmp/instalation.sql.template
 
 RUN chmod +x /usr/local/bin/start_mariadb.sh
 

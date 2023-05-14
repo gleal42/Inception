@@ -2,6 +2,10 @@
 
 set -eux
 
+# Just to prevent a random $_ somewhere in the file (encrypted password)
+
+envsubst "$(printf '${%s} ' $(env | grep -v "^_" | cut -d'=' -f1))" < /tmp/instalation.sql.template > /tmp/instalation.sql
+
 if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
 then 
     mysql_install_db --datadir=/var/lib/mysql
@@ -24,7 +28,10 @@ HERE
 
 mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < /tmp/instalation.sql
 
+rm -rf /tmp/instalation.sql
+
 fi
+
 
 # service mysql status
 # mysqld --help --verbose | grep bootstrap

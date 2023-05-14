@@ -168,6 +168,10 @@ mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} --all-databases > /tmp/instalatio
 
 Finaly delete all the posts from wp_options
 
+On envsubst, if you don't specify the variables you want to replace all dollar signs in the document will be a problem and try to replace
+
+envsubst "$(printf '${%s} ' $(cat srcs/.env | grep -v "^#" | grep -v "^$" | cut -d'=' -f1))" --variables | xargs -L4 | column -t
+
 https://codex.wordpress.org/Database_Description#Table:_wp_options
 
 https://code.tutsplus.com/tutorials/understanding-and-working-with-the-wordpress-options-table--cms-21119
