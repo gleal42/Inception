@@ -1,6 +1,18 @@
+include srcs/.env
+
+VARIABLE = $(shell cat /etc/hosts | grep -c '$(DOMAIN_NAME)')
+
 all: start
 
-start:
+hostexists:
+ifeq ($(VARIABLE), 1)
+	@echo "DOMAIN_NAME already in hosts (good)";
+else
+	@echo "Adding new domain to hosts";
+	sudo -- sh -c "echo 127.0.0.1       $(DOMAIN_NAME) >> /etc/hosts"
+endif
+
+start: hostexists
 	docker-compose -f srcs/docker-compose.yml --env-file srcs/.env up
 
 stop:
@@ -23,5 +35,4 @@ re: fclean
 	sudo rm -rf data/mysql/*
 	docker-compose -f srcs/docker-compose.yml --env-file srcs/.env up --build
 
-
-.PHONY: all start stop clean fclean re
+.PHONY: all start stop clean fclean re hostexists
