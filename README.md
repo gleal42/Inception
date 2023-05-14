@@ -179,3 +179,5 @@ https://code.tutsplus.com/tutorials/understanding-and-working-with-the-wordpress
 https://codex.wordpress.org/Option_Reference
 
 https://wordpress.org/documentation/article/roles-and-capabilities/
+
+https://www.hostpapa.com/knowledgebase/create-admin-account-wordpress-via-mysql/

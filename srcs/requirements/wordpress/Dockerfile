@@ -3,6 +3,7 @@ FROM debian:buster
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get -y install wget
+RUN apt-get -y install gettext-base
 
 RUN apt -y install lsb-release apt-transport-https ca-certificates 
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
@@ -27,7 +28,7 @@ RUN wget https://wordpress.org/latest.tar.gz && \
 	mv wordpress/* /var/www/html && \
 	rm -rf latest.tar.gz
 
-COPY conf/wp-config.php /var/www/html/wp-config.php
+COPY conf/wp-config.php.template /tmp/wp-config.php.template
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY tools/start_wordpress.sh /usr/local/bin/

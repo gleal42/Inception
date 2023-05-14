@@ -2,9 +2,11 @@
 
 set -eux
 
-# Just to prevent a random $_ somewhere in the file (encrypted password)
+# grep -v "^_" just to prevent a random $_ somewhere in the file (encrypted password)
 
+envsubst "$(printf '${%s} ' $(env | grep -v "^_" | cut -d'=' -f1))" < /tmp/50-server.cnf.template > /etc/mysql/mariadb.conf.d/50-server.cnf
 envsubst "$(printf '${%s} ' $(env | grep -v "^_" | cut -d'=' -f1))" < /tmp/instalation.sql.template > /tmp/instalation.sql
+
 
 if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
 then 

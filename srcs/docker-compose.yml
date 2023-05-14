@@ -13,7 +13,6 @@ services:
     expose:
       - 3306
     volumes:
-      - ./requirements/mariadb/conf/:/etc/mysql/mariadb.conf.d/
       - mariadb_data:/var/lib/mysql
 
   wordpress:
@@ -39,7 +38,6 @@ services:
     ports:
       - 443:443
     volumes:
-      - ./requirements/nginx/conf/:/etc/nginx/conf.d/
       - wordpress_data:/var/www/html
     restart: always
     networks:

@@ -8,12 +8,12 @@
 [server]
 
 [client]
-user                    = root
+user                    = ${MYSQL_ROOT_USER}
 socket                  = /var/run/mysqld/mysqld.sock
 
 # this is only for the mysqld standalone daemon
 [mysqld]
-user                    = root
+user                    = ${MYSQL_ROOT_USER}
 pid-file                = /run/mysqld/mysqld.pid
 socket                  = /run/mysqld/mysqld.sock
 #port                   = 3306
@@ -131,5 +131,4 @@ collation-server      = utf8mb4_general_ci
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
 [mariadb-10.3]
-
 
