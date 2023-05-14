@@ -27,6 +27,8 @@ services:
     restart: always
     networks:
       - inception
+    expose:
+      - 9000
 
   nginx:
     depends_on:
