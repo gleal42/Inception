@@ -172,6 +172,18 @@ On envsubst, if you don't specify the variables you want to replace all dollar s
 
 envsubst "$(printf '${%s} ' $(cat srcs/.env | grep -v "^#" | grep -v "^$" | cut -d'=' -f1))" --variables | xargs -L4 | column -t
 
+System networks such as bridge, host, and none will never be removed.
+
+try first
+mysql -u root
+
+then when it fails do:
+mysql -u root -proot
+
+mysql -u databasemaster -pgreatpassword wordpress
+
+https://docs.docker.com/engine/reference/commandline/network_prune/
+
 https://codex.wordpress.org/Database_Description#Table:_wp_options
 
 https://code.tutsplus.com/tutorials/understanding-and-working-with-the-wordpress-options-table--cms-21119

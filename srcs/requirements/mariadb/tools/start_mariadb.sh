@@ -30,6 +30,10 @@ HERE
 
 mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < /tmp/instalation.sql
 
+# Making password required
+mysql -e "ALTER USER '${MYSQL_ROOT_USER}'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
+mysqladmin -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} shutdown;
+
 rm -rf /tmp/instalation.sql
 
 fi
