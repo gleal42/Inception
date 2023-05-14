@@ -182,6 +182,10 @@ mysql -u root -proot
 
 mysql -u databasemaster -pgreatpassword wordpress
 
+Don't forget to change /etc/hosts
+
+127.0.0.1 ${DOMAIN_NAME}
+
 https://docs.docker.com/engine/reference/commandline/network_prune/
 
 https://codex.wordpress.org/Database_Description#Table:_wp_options
