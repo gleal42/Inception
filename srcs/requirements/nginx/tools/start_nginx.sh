@@ -13,8 +13,8 @@ openssl req -newkey rsa:4096 \
 			-sha256 \
 			-days 3650 \
 			-nodes \
-			-out /etc/nginx/ssl/localhost.crt \
-			-keyout /etc/nginx/ssl/localhost.key \
+			-out /etc/nginx/ssl/self-signed.crt \
+			-keyout /etc/nginx/ssl/self-signed.key \
 			-subj "/C=PT/ST=Lisbon/L=Lisbon/O=42 Lisboa/OU=gleal/CN=$DOMAIN_NAME"
 
 nginx -g 'daemon off;'

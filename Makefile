@@ -1,6 +1,7 @@
 include srcs/.env
 
 VARIABLE = $(shell cat /etc/hosts | grep -c '$(DOMAIN_NAME)')
+VOLUME_DIR := $(shell pwd)/data
 
 all: start
 
@@ -31,8 +32,8 @@ fclean: stop
 re: fclean
 	docker volume rm srcs_wordpress_data
 	docker volume rm srcs_mariadb_data
-	sudo rm -rf data/wordpress/*
-	sudo rm -rf data/mysql/*
+	sudo rm -rf $(VOLUME_DIR)/wordpress/*
+	sudo rm -rf $(VOLUME_DIR)/mysql/*
 	docker-compose -f srcs/docker-compose.yml --env-file srcs/.env up --build
 
 .PHONY: all start stop clean fclean re hostexists
